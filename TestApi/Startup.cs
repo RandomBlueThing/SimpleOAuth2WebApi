@@ -25,7 +25,7 @@ namespace TestApi
 			config.MapHttpAttributeRoutes();
 
 			// require authentication for all controllers
-			config.Filters.Add(new AuthorizeAttribute());
+			//config.Filters.Add(new AuthorizeAttribute());
 
 			app.UseWebApi(config);
 		}

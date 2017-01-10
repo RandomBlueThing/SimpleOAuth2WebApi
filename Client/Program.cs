@@ -12,7 +12,8 @@ namespace Client
 	{
 		static void Main(string[] args)
 		{
-			var token = GetClientToken();
+			//var token = GetClientToken();
+			var token = GetUserToken();
 			CallApi(token);
 
 			Console.ReadKey(true);
@@ -29,6 +30,15 @@ namespace Client
 			return client.RequestClientCredentialsAsync("api1").Result;
 		}
 
+		static TokenResponse GetUserToken()
+		{
+			var client = new TokenClient(
+				"http://localhost:5000/connect/token",
+				"carbon",
+				"21B5F798-BE55-42BC-8AA8-0025B903DC3B");
+
+			return client.RequestResourceOwnerPasswordAsync("bob", "secret", "api1").Result;
+		}
 
 		static void CallApi(TokenResponse response)
 		{
